@@ -1,10 +1,12 @@
 <template>
   <div class="product-card">
-    <img class="card-image" :src="require(`../assets/images/products/` + productInfo.image)" alt="">
-    <p class="title">{{ productInfo.name }}</p>
-    <p class="price">{{ productInfo.price }}</p>
-    <div @click="addToCart" class="cart-block">
-      <div v-if="!isInCart" class="cart-block-btn">
+    <router-link :to="linkOpen">
+      <img class="card-image" :src="require(`../assets/images/products/` + productInfo.image)" alt="">
+      <p class="title">{{ productInfo.name }}</p>
+      <p class="price">{{ productInfo.price }}</p>
+    </router-link>
+    <div class="cart-block">
+      <div v-if="!isInCart" @click="addToCart" class="cart-block-btn">
         <img src="../assets/images/icons/add.png" alt="">
         <p>Добавить</p>
       </div>
@@ -30,18 +32,31 @@ export default {
   },
   methods: {
     addToCart() {
-      if (!this.isInCart) 
-      {
+      if (!this.isInCart) {
         this.isInCart = true;
         this.countInCart++;
+        this.$store.commit('addToCart',this.productId);
       }
     },
-    addAnotherOne(){
+    addAnotherOne() {
       this.countInCart++;
+      this.$store.commit('addToCart',this.productId);
     },
     removeFromCart() {
-      this.countInCart--;
-      if (this.countInCart == 0) this.isInCart = false;
+      if (this.countInCart <= 1) {
+        this.isInCart = false;
+        this.countInCart = 0;
+      }
+      else this.countInCart--;
+      this.$store.commit('removeFromCart',this.productId);
+    }
+  },
+  computed:{
+    linkOpen(){
+      return `/products/${this.productInfo.id}`;
+    },
+    productId() {
+      return +this.productInfo.id;
     }
   }
 }
@@ -62,7 +77,16 @@ export default {
   height: 100%;
 
 }
-
+a{
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%;
+}
 .card-image {
   margin-top: 20px;
   width: 90%;
@@ -97,6 +121,7 @@ export default {
   padding-right: 20px;
   border-radius: 30px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .cart-block img {
@@ -104,11 +129,12 @@ export default {
   height: 30px;
 }
 
-.remove-btn{
+.remove-btn {
   max-width: 20px;
   max-height: 20px;
-  
+
 }
+
 .cart-block p {
   width: 100px;
 }

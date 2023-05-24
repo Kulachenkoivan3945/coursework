@@ -99,10 +99,10 @@ export default {
   transition: 0.5s all ease-in-out;
 }
 .btn-left:hover{
-  transform: translateX(-20px);
+  transform: translateX(-10px);
 }
 .btn-right:hover{
-  transform: translateX(20px);
+  transform: translateX(10px);
 }
 .changed-image{
   opacity: 0;
