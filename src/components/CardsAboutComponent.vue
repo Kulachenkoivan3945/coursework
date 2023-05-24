@@ -34,7 +34,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.886);
     border-radius: 20px;
   }
   .description{

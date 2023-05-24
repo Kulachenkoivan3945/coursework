@@ -11,7 +11,7 @@
       </p>
       <div class="title-btn">
         <button>
-          <router-link to="/">Перейти к выбору</router-link>
+          <router-link to="/products">Перейти к выбору</router-link>
         </button>
       </div>
     </div>
@@ -199,8 +199,11 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /*
   background: rgb(255, 245, 207);
 background: linear-gradient(90deg, rgba(249,234,171,0.9859593495601365) 1%, rgba(247, 199, 141, 0.983) 16%, rgba(246, 220, 148, 0.804) 41%, rgb(243, 225, 127) 59%, rgba(240,220,187,1) 100%);
+*/
+  background-image: url("../assets/images/mainPage/about-bg5.webp");
 }
 .cards h3{
   font-size: 1.7rem;
