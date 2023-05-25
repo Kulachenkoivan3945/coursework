@@ -107,4 +107,32 @@ export default {
 .changed-image{
   opacity: 0;
 }
+
+@media(max-width:700px) {
+  .btn-container img{
+    width: 30px;
+    height: 50px;
+  }
+  .btn-left:hover{
+    transform: translateX(-7px);
+  }
+  .btn-right:hover{
+    transform: translateX(7px);
+  }
+  .img-container{
+    min-height: 250px;
+    max-height: 250px;
+  }
+}
+
+@media(max-width:550px) {
+  .btn-container img{
+    width: 25px;
+    height: 45px;
+  }
+  .img-container{
+    min-height: 200px;
+    max-height: 200px;
+  }
+}
 </style>

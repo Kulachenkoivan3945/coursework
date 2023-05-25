@@ -39,13 +39,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-h2{
+h2 {
   text-align: center;
   margin-top: 0;
   border: 0px solid transparent;
   padding-top: 30px;
 }
+
 .contacts {
   background-image: url("../assets/images/general/footer-bg.jpg");
   background-size: cover;
@@ -94,8 +94,23 @@ h2{
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
 }
-.contacts-social a:hover{
+
+.contacts-social a:hover {
   transform: scale(1.1);
 }
 
+@media(max-width:800px) {
+  .contacts-links-container img {
+    width: 40px;
+    height: 40px;
+  }
+  .contacts-links-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contacts-links-container p {
+    padding-bottom: 5px;
+  }
+}
 </style>

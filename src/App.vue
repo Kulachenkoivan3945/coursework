@@ -27,8 +27,12 @@ export default {
         name: 'Главная',
         path: '/'
       }, {
-        name: 'Продукты',
+        name: 'Цветы',
         path: '/products'
+      },
+      {
+        name: 'Корзина',
+        path: '/cart'
       }]
     }
   }
@@ -42,7 +46,7 @@ export default {
 
 body {
   margin: 0;
-  overflow-x:hidden;
+  overflow-x: hidden;
   width: 100vw;
   max-width: 100vw;
 }
@@ -50,8 +54,35 @@ body {
 * {
   font-family: 'Montserrat';
 }
-#app{
+
+p {
+  font-size: 1rem;
+}
+
+#app {
   width: 100vw;
   max-width: 100vw;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media(max-width:1000px) {
+  html{
+    font-size: 15px;
+  }
+}
+
+@media(max-width:700px) {
+  html{
+    font-size: 13px;
+  }
+}
+
+@media(max-width:500px) {
+  html{
+    font-size: 12px;
+  }
 }
 </style>

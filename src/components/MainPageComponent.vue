@@ -1,6 +1,7 @@
 <template>
   <div class="title">
-    <img src="../assets/images/mainPage/title-bg2.jpg" alt="">
+    <img v-if="width>912" src="../assets/images/mainPage/title-bg2.jpg" alt="">
+    <img v-else src="../assets/images/mainPage/title-bg-mobile.jpg" alt="">
     <div class="title-text">
       <h1>Bouqet Shop</h1>
 
@@ -18,6 +19,7 @@
   </div>
   <div class="privilege">
     <h3>Почему выбирают нас</h3>
+    <img src="../assets/images/mainPage/гиф.gif" class="mya" alt=" " />
     <div class="privilege-cards-container">
       <PrivelegeCard v-for="privilege in privileges" :key="privilege" :image="privilege.image" :title="privilege.title"
         :description="privilege.description" />
@@ -27,15 +29,15 @@
   <div class="cards">
     <h3>Чем мы занимаемся</h3>
     <div class="cards-about-container">
-    
+
       <div class="card-about">
         <CardAbout :CardInfo="CardsInfo[0]"></CardAbout>
       </div>
-  
+
       <div class="card-about card-about-down">
         <CardAbout :CardInfo="CardsInfo[1]"></CardAbout>
       </div>
-  
+
     </div>
   </div>
 </template>
@@ -52,8 +54,10 @@ export default {
   },
   data() {
     return {
+      width: 1000,
+      height: 1000,
       CardsInfo: [{
-        
+
         slidersImgs: [
           '1656332187_17-mykaleidoscope-ru-p-samie-roskoshnie-buketi-tsvetov-krasivo-fo-17.jpg',
           '1656345369_46-mykaleidoscope-ru-p-tsvetnie-rozi-buket-krasivo-foto-50.jpg',
@@ -75,7 +79,7 @@ export default {
           'decor2.jpg',
           'decor3.jpg',
           'decor4.jpg'
-          
+
         ],
         description: `Помимо продажи цветов, мы также предлагаем услуги по декорированию помещений цветами или оформлению свадеб, юбилеев, корпоративных мероприятий и других торжественных событий.`
       }],
@@ -97,7 +101,19 @@ export default {
         }
       ]
     }
-  }
+  },
+  methods: {
+    updateWidth() {
+      this.width = window.innerWidth;
+    },
+    updateHeight() {
+      this.height = window.innerHeight;
+    },
+  },
+  created() {
+  window.addEventListener('resize', this.updateWidth);
+  window.addEventListener('resize', this.updateHeight);
+},
 }
 </script>
 
@@ -110,7 +126,7 @@ export default {
   display: inline-block;
   position: relative;
   transform: translateY(7px);
-
+  height: 100vh;
 }
 
 .title img+.title-text {
@@ -121,8 +137,9 @@ export default {
 
 .title img {
   width: 100vw;
-  max-height: 100vh;
+  height: 100vh;
   overflow: hidden;
+  padding-top: 40px;
 }
 
 .title-text {
@@ -166,7 +183,10 @@ export default {
   color: white;
   font-size: 1.1rem;
 }
-
+.title-text h1{
+  color: #D59BF6;  
+  
+  }
 
 .privilege {
   display: flex;
@@ -174,15 +194,19 @@ export default {
   align-items: center;
   padding-top: 30px;
   padding-bottom: 100px;
-  background-image: url("../assets/images/mainPage/privilege-bg.jpg");
+  background-image: url("../assets/images/mainPage/fon2.jpg");
   background-size: cover;
+}
 
+.mya {
+  width: 150px;
 }
 
 .privilege h3 {
   font-size: 1.7rem;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: #7e6ba9;
+  margin-bottom: 0;
 }
 
 .privilege-cards-container {
@@ -194,7 +218,7 @@ export default {
   width: 80%;
 }
 
-.cards{
+.cards {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -203,11 +227,14 @@ export default {
   background: rgb(255, 245, 207);
 background: linear-gradient(90deg, rgba(249,234,171,0.9859593495601365) 1%, rgba(247, 199, 141, 0.983) 16%, rgba(246, 220, 148, 0.804) 41%, rgb(243, 225, 127) 59%, rgba(240,220,187,1) 100%);
 */
-  background-image: url("../assets/images/mainPage/about-bg6.png");
+  background-image: url("../assets/images/mainPage/fon10.jpg");
+  background-size: cover;
 }
-.cards h3{
+
+.cards h3 {
   font-size: 1.7rem;
 }
+
 .cards-about-container {
   display: flex;
   flex-direction: row;
@@ -226,11 +253,17 @@ background: linear-gradient(90deg, rgba(249,234,171,0.9859593495601365) 1%, rgba
 
 .card-about-down {
   margin-top: 30%;
+  margin-right: 0;
+  margin-left: 30px;
 }
 
 @media(min-width:1800px) {
   .title {
     background-size: cover;
+  }
+
+  .card-about-down {
+    margin-top: 20%;
   }
 }
 
@@ -243,7 +276,110 @@ background: linear-gradient(90deg, rgba(249,234,171,0.9859593495601365) 1%, rgba
 
 @media(max-width:1400px) {
   .title-text {
-    margin-top: 10%;
+    margin-top: 12%;
     margin-left: 26%;
+  }
+}
+
+@media(max-width:1200px) {
+  .title-text {
+    margin-top: 15vh;
+    margin-left: 35%;
+    padding: 20px;
+  }
+
+  .title h1 {
+    font-size: 1.7rem;
+  }
+
+  .title h2 {
+    font-size: 1.5rem;
+  }
+
+  .title p {
+    font-size: 1rem;
+  }
+
+  .title-btn button {
+    width: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .title-btn a {
+    font-size: 1rem;
+  }
+
+  .privilege-cards-container {
+    width: 95%;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+  .cards-about-container {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-about {
+    max-width: unset;
+    min-width: unset;
+    min-height: unset;
+    max-height: unset;
+    width: 70%;
+    align-self: center;
+  }
+
+  .card-about-down {
+    margin-top: 50px;
+    margin-left: 0;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+@media(max-width:912px) {
+
+  .privilege-cards-container {
+    grid-template-columns: 400px;
+    justify-content: center;
+  }
+  .title-text{
+    width: 50%;
+    margin-top: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: rgba(255, 255, 255, 0.595);
+    border-radius: 10%;
+  }
+}
+
+@media(max-width:700px) {
+  .title-text{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+@media(max-width:500px) {
+  .title-text{
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 15%;
+  }
+
+  .card-about {
+    width: 90%;
+  }
+
+  .privilege-cards-container {
+    grid-template-columns: 300px;
   }
 }</style>

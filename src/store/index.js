@@ -231,7 +231,7 @@ export default createStore({
             if (product) {
                 product.count++;
             } else state.productsInCart.push({ id: id, count: 1 });
-            console.log(state.productsInCart);
+
         },
         removeFromCart(state, id) {
             let product = state.productsInCart.find(productInCart => productInCart.id === id)
@@ -241,7 +241,13 @@ export default createStore({
             if (product.count <= 0) {
                 state.productsInCart.splice(state.productsInCart.findIndex(productInCart => productInCart.id === id), 1);
             }
-            console.log(state.productsInCart);
+
+        },
+        deleteFromCart(state, id) {
+            let product = state.productsInCart.find(productInCart => productInCart.id === id)
+            if (product) {
+                state.productsInCart.splice(state.productsInCart.findIndex(productInCart => productInCart.id === id), 1);
+            }
         }
     },
     actions: {},
