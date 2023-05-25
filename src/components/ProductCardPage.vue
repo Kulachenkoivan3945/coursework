@@ -3,8 +3,7 @@
     <div class="images-block">
       <div class="aside-images">
         <div v-for="asideImage in product.asideImages" :key="asideImage" class="aside-image-container">
-          <img :src="require(`../assets/images/products/` + asideImage)" 
-         @click="changeMainPhoto(asideImage)" alt="">
+          <img :src="require(`../assets/images/products/` + asideImage)" @click="changeMainPhoto(asideImage)" alt="">
         </div>
       </div>
       <div class="main-image">
@@ -22,19 +21,18 @@
 
         </h3>
         <p class="price">{{ product.price }}</p>
-        <p v-if="countInCart" class="count">{{ countInCart }}</p>
-        <p v-else class="count">0</p>
         <div class="cart-block">
           <div class="cart-block-btn">
             <img class="remove-btn" @click="removeFromCart" src="../assets/images/icons/remove.png" alt="">
-            <p>{{ countInCart }}</p>
+            <p v-if="countInCart" class="count">{{ countInCart }}</p>
+            <p v-else class="count">0</p>
             <img @click="addAnotherOne" src="../assets/images/icons/add.png" alt="">
           </div>
         </div>
         <p class="result"></p>
         <div class="toCart">
           <router-link to="/">
-            <p>В корзину {{ productId }}</p>
+            <p>В корзину</p>
 
           </router-link>
         </div>
@@ -47,29 +45,25 @@
 <script>
 export default {
   name: 'ProductCardPage',
-  data(){
-    return{
+  data() {
+    return {
       mainImage: "",
       isChanged: false
     }
   },
-  methods:{
-    changeMainPhoto(src){
+  methods: {
+    changeMainPhoto(src) {
       this.mainImage = src;
       this.isChanged = true;
-      
+
     },
     addAnotherOne() {
-      this.countInCart++;
-      this.$store.commit('addToCart',this.productId);
+
+      this.$store.commit('addToCart', this.productId);
     },
     removeFromCart() {
-      if (this.countInCart <= 1) {
-        this.isInCart = false;
-        this.countInCart = 0;
-      }
-      else this.countInCart--;
-      this.$store.commit('removeFromCart',this.productId);
+
+      this.$store.commit('removeFromCart', this.productId);
     }
   },
   computed: {
@@ -91,8 +85,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-
 .product-container {
   width: 100vw;
   display: flex;
@@ -110,11 +102,13 @@ export default {
   display: flex;
   justify-content: space-around;
   padding-right: 30px;
+  padding-left: 20px;
 }
 
-.main-image{
+.main-image {
   width: 90%;
 }
+
 .main-image img {
   width: 100%;
   height: 100%;
@@ -125,18 +119,17 @@ export default {
 .aside-images {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(6,calc(100% / 6)) ;
-  padding: 10px 0px 10px 0px;
+  grid-template-rows: repeat(6, calc(100% / 6));
+  margin-right: 10px;
   border: 1px solid rgb(181, 179, 179);
   border-radius: 10px;
-  width: 20%;
+  width: 15%;
   max-height: 100%;
 }
 
 .aside-image-container {
   border-bottom: 1px solid rgb(181, 179, 179);
   padding: 5px;
-  padding-bottom: 10px;
   max-height: 100%;
 }
 
@@ -150,15 +143,14 @@ export default {
   border-radius: 10px;
 }
 
-.text-block{
+.text-block {
   display: flex;
   flex-direction: column;
   padding-left: 30px;
   padding-right: 50px;
 }
-.description-block {
- 
-}
+
+.description-block {}
 
 .cart-block {
   display: flex;

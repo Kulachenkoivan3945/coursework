@@ -21,10 +21,10 @@
         <div class="nav-links-burger"
         :class="!burgerState ? 'burger-close' : ''">
             <ul>
-                <li><router-link to="/" @click="changeBurgerState">Главная</router-link></li>
-                <li><router-link to="/" @click="changeBurgerState">Товары</router-link></li>
-                <li><router-link to="/" @click="changeBurgerState">Галерея</router-link></li>
-                <li><router-link to="/" @click="changeBurgerState">Корзина</router-link></li>
+                <li v-for="page in pages" 
+                :key="page"
+                @click="changeBurgerState
+                "><router-link :to="page.path">{{page.name}}</router-link></li>
             </ul>
         </div>
     </nav>
