@@ -12,6 +12,9 @@ export default {
   name: 'ProductsView',
   components: {
     ProductCardPage
+  },
+  mounted(){
+    window.scrollTo(0, 0)
   }
 }
 </script>

@@ -12,6 +12,9 @@ export default {
   name: 'CartView',
   components: {
     CartPage
+  },
+  mounted(){
+    window.scrollTo(0, 0)
   }
 }
 </script>
