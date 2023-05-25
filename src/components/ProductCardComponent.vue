@@ -24,30 +24,20 @@
 export default {
   name: 'ProductCardComponent',
   props: ['productInfo'],
-  data() {
-    return {
-      isInCart: false,
-      countInCart: 0
-    }
-  },
   methods: {
     addToCart() {
       if (!this.isInCart) {
         this.isInCart = true;
-        this.countInCart++;
         this.$store.commit('addToCart',this.productId);
       }
     },
     addAnotherOne() {
-      this.countInCart++;
       this.$store.commit('addToCart',this.productId);
     },
     removeFromCart() {
       if (this.countInCart <= 1) {
         this.isInCart = false;
-        this.countInCart = 0;
       }
-      else this.countInCart--;
       this.$store.commit('removeFromCart',this.productId);
     }
   },
@@ -57,6 +47,12 @@ export default {
     },
     productId() {
       return +this.productInfo.id;
+    },
+    countInCart() {
+      return this.$store.getters.getCountInCartById(this.productId);
+    },
+    isInCart(){
+      return this.$store.getters.getCountInCartById(this.productId);
     }
   }
 }

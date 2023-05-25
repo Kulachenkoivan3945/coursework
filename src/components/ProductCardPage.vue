@@ -14,13 +14,13 @@
 
     <div class="text-block">
       <div class="description-block">
-        <p>{{ product.title }}</p>
+        <p class="text-description" >{{ product.title }}</p>
       </div>
       <div class="buy-block">
         <h3 class="title">
-
+          {{ product.name }}
         </h3>
-        <p class="price">{{ product.price }}</p>
+        <p class="price">Цена: <span class="bold">{{ product.price }}₽</span></p>
         <div class="cart-block">
           <div class="cart-block-btn">
             <img class="remove-btn" @click="removeFromCart" src="../assets/images/icons/remove.png" alt="">
@@ -29,9 +29,10 @@
             <img @click="addAnotherOne" src="../assets/images/icons/add.png" alt="">
           </div>
         </div>
-        <p class="result"></p>
-        <div class="toCart">
+        <p class="result">Итого: <span class="bold">{{product.price*countInCart}}₽</span></p>
+        <div class="to-cart">
           <router-link to="/">
+            <img src="../assets/images/icons/cart.png" alt="">
             <p>В корзину</p>
 
           </router-link>
@@ -148,20 +149,37 @@ export default {
   flex-direction: column;
   padding-left: 30px;
   padding-right: 50px;
+  height: 100%;
 }
 
 .description-block {}
 
+.bold{
+  font-weight: bold;
+}
+.text-description{
+  color: rgb(67, 67, 67);
+}
+.buy-block{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
 .cart-block {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
+.count{
+  text-align: center;
+}
 .cart-block-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: rgb(238, 238, 238);
   padding-left: 20px;
   padding-right: 20px;
@@ -181,6 +199,27 @@ export default {
 
 }
 
+.to-cart{
+  background-color: rgb(71, 251, 71);
+  width: 190px;
+  border-radius: 30px;
+  text-align: center;
+}
+.to-cart img{
+  width: 30px;
+  padding-right: 20px;
+}
+.to-cart p{
+  color: black;
+}
+.to-cart a{
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .cart-block p {
   width: 100px;
 }
