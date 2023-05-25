@@ -95,7 +95,7 @@ export default {
   padding-bottom: 100px;
   padding-top: 100px;
   background-image: url("../assets/images/products/products-bg.png");
-  background-size: cover;
+  background-size:cover;
 }
 
 .images-block {

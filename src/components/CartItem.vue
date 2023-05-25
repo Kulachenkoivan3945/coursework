@@ -1,11 +1,12 @@
 <template>
   <div class="cart-item-container">
     <div class="cart-item-description">
-      <img class="cart-img" :src="require(`../assets/images/products/` + itemInfo.image)" alt="">
-      
+      <router-link :to="'/products/'+itemInfo.id">
+        <img class="cart-img" :src="require(`../assets/images/products/` + itemInfo.image)" alt="">
+      </router-link>
       <div class="text-description">
         <p class="bold">{{ itemInfo.name }}</p>
-        <p>Цена: <span class="bold">{{itemInfo.price}}₽</span></p>
+        <p>Цена: <span class="bold">{{ itemInfo.price }}₽</span></p>
         <div class="cart-block">
           <div class="cart-block-btn">
             <img class="remove-btn" @click="removeFromCart" src="../assets/images/icons/remove.png" alt="">
@@ -14,7 +15,7 @@
             <img @click="addAnotherOne" src="../assets/images/icons/add.png" alt="">
           </div>
         </div>
-        <p>Итого: <span class="bold">{{itemInfo.price * countInCart}}₽</span></p>
+        <p>Итого: <span class="bold">{{ itemInfo.price * countInCart }}₽</span></p>
       </div>
       <div class="delete-btn">
         <img @click="deleteFromCart" src="../assets/images/icons/delete.png" alt="">
@@ -48,7 +49,7 @@ export default {
     removeFromCart() {
       this.$store.commit('removeFromCart', this.item.id);
     },
-    deleteFromCart(){
+    deleteFromCart() {
       this.$store.commit('deleteFromCart', this.item.id);
     }
   },
@@ -81,10 +82,11 @@ export default {
   align-self: center;
 }
 
-.text-description{
+.text-description {
   width: 60%;
   margin-left: 50px;
 }
+
 .cart-block-btn {
   display: flex;
   align-items: center;
@@ -98,9 +100,10 @@ export default {
 
 }
 
-.cart-block-btn p{
+.cart-block-btn p {
   margin: 5px;
 }
+
 .cart-block img {
   width: 20px;
   height: 20px;
@@ -112,26 +115,27 @@ export default {
 
 }
 
-.delete-btn{
+.delete-btn {
   align-self: flex-start;
   justify-content: flex-end;
 }
-.delete-btn img{
+
+.delete-btn img {
   width: 35px;
   height: 35px;
   border-radius: 0px;
   cursor: pointer;
 }
 
-@media(max-width:900px){
-  .cart-img{
+@media(max-width:900px) {
+  .cart-img {
     width: 150px;
     height: 120px;
   }
 }
 
-@media(max-width:500px){
-  .cart-item-description{
+@media(max-width:500px) {
+  .cart-item-description {
     flex-direction: column;
     width: 300px;
     justify-content: center;
@@ -140,30 +144,34 @@ export default {
     padding-left: 0;
     padding-right: 0;
   }
-  .delete-btn{
+
+  .delete-btn {
     align-self: flex-end;
     margin-right: 40px;
   }
-  .delete-btn img{
+
+  .delete-btn img {
     height: 25px;
     width: 25px;
   }
-  .cart-img{
+
+  .cart-img {
     width: 200px;
     height: 200px;
   }
-  .cart-block{
+
+  .cart-block {
     display: flex;
     justify-content: center;
   }
-  .cart-block-btn{
+
+  .cart-block-btn {
     margin: 0px !important;
     align-self: center;
     justify-self: center;
   }
-  .text-description{
+
+  .text-description {
     margin-left: 0px;
   }
-}
-
-</style>
+}</style>

@@ -162,6 +162,7 @@ export default {
   display: flex;
   justify-content: center;
   background-image: url("../assets/images/products/products-bg.png");
+  background-size:cover;
 }
 
 .cart-container {
